@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UserManagement from './UserManagement';
+import LoginForm from './LoginForm';
+import LogoutButton from './LogoutButton';
+import RegistrationForm from './RegistrationForm';
+import firebaseConfig from './firebaseConfig';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* <Route path="/" element={<div>Home Page</div>} /> */}
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegistrationForm />} />
+          <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/logout" element={<LogoutButton />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
 export default App;
+
+
+
